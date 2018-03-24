@@ -14,6 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class StudentServiceDatabase implements StudentService
 {
+	
+	public StudentServiceDatabase() {}
+
+	public StudentServiceDatabase(StudentMapper studentMapper) {
+		this.studentMapper = studentMapper;
+	}
+	
     @Autowired
     private StudentMapper studentMapper;
 
@@ -35,23 +42,23 @@ public class StudentServiceDatabase implements StudentService
 
 
     @Override
-    public void addStudent (StudentModel student)
+    public boolean addStudent (StudentModel student)
     {
-        studentMapper.addStudent (student);
+        return studentMapper.addStudent (student);
     }
 
 
     @Override
-    public void deleteStudent (String npm)
+    public boolean deleteStudent (String npm)
     {
     	 log.info ("sudent"+npm+"delete");
-    	studentMapper.deleteStudent(npm);
+    	return studentMapper.deleteStudent(npm);
     }
     
     
-    public void updateStudent (StudentModel student)
+    public boolean updateStudent (StudentModel student)
     {
-        studentMapper.updateStudent (student);
+       return studentMapper.updateStudent (student);
     }
 
 }
